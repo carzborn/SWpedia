@@ -30,7 +30,7 @@ const Films = () => {
     return (
         <>
 
-        <h2>All films</h2>
+        <h1>All films</h1>
         {error && {error}}
 
         {loading && !films && (
