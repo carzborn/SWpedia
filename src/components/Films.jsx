@@ -29,13 +29,15 @@ const Films = () => {
 
     return (
         <>
+
+        <h2>All films</h2>
         {error && {error}}
 
-        {loading && (
+        {loading && !films && (
             <h1 className="text-center mt-5">Loading...</h1>
         )}
 
-        <h2>All films</h2>
+        
 
         <Row xs={1} md={2} lg={3}>
 
