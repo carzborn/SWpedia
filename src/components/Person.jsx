@@ -9,12 +9,21 @@ const Person = () => {
     const [person, setPerson] = useState("")
     const [films, setFilms] = useState([])
     const {id} = useParams()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
 
     const getPerson = async (id) => {
-        const data = await SwapiApi.getPerson(id)
-        setPerson(data)
-        setFilms(data.films)
-        console.log(data)
+        setLoading(true)
+        try {
+            const data = await SwapiApi.getPerson(id)
+            setPerson(data)
+            setFilms(data.films)
+            setLoading(false)
+            console.log(data)
+        }catch (err){
+            setError(err.message)
+        }
+
     }
 
     useEffect(() => {
@@ -23,6 +32,10 @@ const Person = () => {
 
       return(
         <>
+        {error && {error}}
+
+        {loading && !person && (<h2>Loading...</h2>)}
+
         <Row>
             <Col>
                 <div className="card">

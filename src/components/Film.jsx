@@ -12,18 +12,22 @@ const Film = () => {
     const { id } = useParams()
     const [people, setPeople] = useState([])
 
-    useEffect(() => {
-        const getFilm = async (id) => {
-            setLoading(true)
-            try{
-                const data = await SwapiApi.getFilm(id)
-                setFilm(data)
-                setPeople(data.characters)
-                console.log(data)
-            }catch(err){
-                setError(err.message)
-            }
+    // Get film from Api
+    const getFilm = async (id) => {
+        setLoading(true)
+        try{
+            const data = await SwapiApi.getFilm(id)
+            setFilm(data)
+            setPeople(data.characters)
+            console.log(data)
+        }catch(err){
+            setError(err.message)
         }
+    }
+
+    // Get film from Api when component is first mounted
+    useEffect(() => {
+
         getFilm(id)
       }, [id])
 

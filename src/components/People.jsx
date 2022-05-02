@@ -10,6 +10,7 @@ const People = () => {
     const [loading, setLoading] = useState("false")
     const [error, setError] = useState("")
 
+    // Get people from Api
     const getPeople = async (page) => {
         setLoading(true)
         try{
@@ -21,6 +22,7 @@ const People = () => {
         }
     } 
 
+    // Get people from API when component is first mounted
     useEffect(() => {
         getPeople(page)
     },[page])
